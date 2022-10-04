@@ -1,5 +1,3 @@
-
-
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
@@ -56,13 +54,13 @@ finally:
 #3
 #GPIO.output(dac, [0,0,0,0,0,0,0,0])
 GPIO.setup(24,GPIO.OUT)
+nu = 100
+p = GPIO.PWM(24, nu)
+p.start(0)
 
 try: 
     while True:
         k = int(input())
-        p = GPIO.PWM(24,0.5)
-        p.start(k)
+        p.ChangeDutyCycle(k)
 finally:
-    input('Press return to stop:')
-    p.stop()
     GPIO.cleanup()
